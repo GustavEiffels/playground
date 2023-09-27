@@ -1,8 +1,8 @@
 package com.example.demo.user.service;
 
-import com.example.demo.user.dto.User;
+import com.example.demo.user.dto.UserCreateDto;
 
 public interface UserService 
 {
-    void saveUserInfo(User user);
+    void saveUserInfo(UserCreateDto  userCreateDto);
 }

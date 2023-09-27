@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./css/createUser.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost:8099/join/css/createUser.css">
     <title>this is login Page (TEMP)</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
         <input id="username" type="text" placeholder="insert name">
         <br>
         <label> user age </label>
-        <input id="uesrage" type="text" placeholder="insert age">
+        <input id="userage" type="text" placeholder="insert age">
         <br>
         <label> user id </label>
         <input id="userid" type="text" placeholder="insert an Id to use">
@@ -34,12 +34,19 @@
             
         </form>
     
+        <div>
+            <button id="createUserInfo">
+                CREATE USER
+            </button>
 
-        <button id="createUserInfo">
-            CREATE USER
-        </button>
+            <button id="forward2Index">
+                Go to index page
+            </button>
+                    
+        </div>
+
     </div>
     
-    <script type="text/javascript" src="./js/createUser.js" ></script>
+    <script src="http://localhost:8099/join/js/createUser.js" ></script>
 </body>
 </html>

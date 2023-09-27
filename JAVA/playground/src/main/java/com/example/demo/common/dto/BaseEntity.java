@@ -25,7 +25,7 @@ public class BaseEntity
     public BaseEntity()
     {
         this.createTimeStamp = new Timestamp(System.currentTimeMillis());
-        this.createTimeStamp = new Timestamp(System.currentTimeMillis());
+        this.updateTimeStamp = new Timestamp(System.currentTimeMillis());
     }
         
 }

@@ -9,7 +9,6 @@ public class PathController
     @GetMapping("/joinPage")
     public String forwardToLoginPage()
     {
-        System.out.println("requested from js"); 
         return "join/createUser.html";
     }
 }
