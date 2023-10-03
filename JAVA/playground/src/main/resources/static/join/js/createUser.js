@@ -32,6 +32,7 @@ function createUserBtnClickEventFunction()
 
     const body = {'name':usernameValue, 'age':userageValue, 'id':useridValue, 'gender':genderValue};
 
+
     fetch('/createAccount',{
         method  :'POST',
         headers :{
@@ -39,7 +40,19 @@ function createUserBtnClickEventFunction()
         },
         body : JSON.stringify(body),
     })
-    .then((result)=>{
-        console.log(result);
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // JSON 데이터를 추출하는 Promise 반환
     })
+    .then(resultBody => {
+        // 이제 resultBody는 파싱된 JSON 데이터입니다.
+        console.log(resultBody);
+        alert(JSON.stringify(resultBody)); // JSON 데이터를 문자열로 변환하여 alert로 표시
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
 }

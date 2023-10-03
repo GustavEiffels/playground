@@ -1,5 +1,7 @@
 package com.example.demo.user.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.common.dto.Rank;
@@ -35,12 +37,31 @@ public class UserServiceImpl implements UserService
     public User convert2User(UserCreateDto userCreateDto)
     {
         User user = new User();
+        try 
+        {
             user.setAge     (userValidService.validCheckAgeData   (userCreateDto.getAge())    );
             user.setGender  (userValidService.validCheckGenderData(userCreateDto.getGender()) );
             user.setId      (userValidService.validCheckIdData    (userCreateDto.getId())     );
             user.setName    (userValidService.validCheckNamData   (userCreateDto.getName())   );
             user.setUserRank( Rank.USER                                                       );
-        return user;
+            return user;    
+        } 
+        catch (Exception e) 
+        {
+            throw new RuntimeException(e.getMessage());
+        }
+        
+    }
+
+    @Override
+    public void findAllUser() 
+    {
+        List<User> userList = userRepository.findAll();
+        for (User user : userList ) 
+        {
+            System.out.println(user.getAge());  
+            System.out.println(user.toString());
+        }
     }
         
 }
