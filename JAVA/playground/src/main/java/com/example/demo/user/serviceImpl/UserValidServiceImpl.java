@@ -4,11 +4,17 @@ import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.user.repository.UserRepository;
 import com.example.demo.user.service.UserValidService;
 
 @Service
 public class UserValidServiceImpl implements UserValidService 
 {
+    private UserRepository userRepository;
+
+    public UserValidServiceImpl(UserRepository userRepository)
+    { this.userRepository = userRepository; }
+
 
     @Override
     public int validCheckAgeData(String userCreateDtoAge) 
@@ -20,7 +26,7 @@ public class UserValidServiceImpl implements UserValidService
     @Override
     public String validCheckIdData(String userCreateDtoId)
     {
-        if( Pattern.compile("^[a-z0-9]{4,20}$").matcher(userCreateDtoId).matches() )
+        if( Pattern.compile("^[a-z0-9]{4,20}$").matcher(notDuplicateUserId(userCreateDtoId)).matches() )
         { return userCreateDtoId; }
 
         else
@@ -51,7 +57,15 @@ public class UserValidServiceImpl implements UserValidService
         else
          { throw new RuntimeException("사용자 성별 설정 오류 : 타입 확인 필요"); }
 
-
     }
-    
+
+    @Override
+    public String notDuplicateUserId(String userCreateDtoId) 
+    {
+        if(userRepository.findAllUserById(userCreateDtoId).size() > 0 )
+        { throw new RuntimeException("ID : "+userCreateDtoId +" is already exist! "); }
+
+        else
+        { return userCreateDtoId; }
+    }
 }

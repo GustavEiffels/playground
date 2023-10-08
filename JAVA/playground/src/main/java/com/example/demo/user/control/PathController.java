@@ -8,7 +8,7 @@ public class PathController
 {
     @GetMapping("/joinPage")
     public String forwardToLoginPage()
-    {
-        return "join/createUser.html";
-    }
+    { return "join/createUser.html"; }
+
+    
 }

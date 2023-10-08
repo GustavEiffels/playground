@@ -28,15 +28,15 @@ public class ServiceController
 
             return result;
         } 
+        
         catch (Exception e) 
         {
             result = new Gson().toJson(new ReturnDto().fail("ERROR EMEREGE : "+e.getMessage(), null));
             return result;
         }
+        
         finally
-        {
-            System.out.println(result);
-        }
+        { System.out.println(result); }
     }       
 
     @PostMapping("/getAllUserInfo")
