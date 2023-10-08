@@ -9,7 +9,7 @@ import com.example.demo.user.service.UserService;
 import com.google.gson.Gson;
 
 @RestController
-public class ServiceController 
+public class ServiceController  
 {
     private UserService userService;
 
@@ -27,7 +27,8 @@ public class ServiceController
             result = new Gson().toJson(new ReturnDto().success("CREATE SUCCESS", null));
 
             return result;
-        } catch (Exception e) 
+        } 
+        catch (Exception e) 
         {
             result = new Gson().toJson(new ReturnDto().fail("ERROR EMEREGE : "+e.getMessage(), null));
             return result;
