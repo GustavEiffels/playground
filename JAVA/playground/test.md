@@ -3,3 +3,4 @@
 
 
 # 2023 10 08 -> 집 ubuntu server 의 mysql 연동 성공
+-> git 에 찍히지 않음 ..
