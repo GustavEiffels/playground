@@ -29,6 +29,12 @@ public class Auth extends BaseEntity
     @JoinColumn(name = "member_pid")
     private Member member;
 
+    public void linkMember(Member member)
+    {
+        this.member = member;
+        member.getAuths().add(this);
+    }
+
     @OneToMany(mappedBy = "auth")
     @Builder.Default
     private List<Post> posts = new ArrayList<>();

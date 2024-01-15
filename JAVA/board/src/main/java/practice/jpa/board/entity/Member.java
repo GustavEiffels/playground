@@ -15,6 +15,17 @@ import java.util.List;
 @Table(uniqueConstraints = @UniqueConstraint( columnNames = {"userEmail"}))
 public class Member extends BaseEntity
 {
+    public Member(){}
+    public Member(String userName, int age, String userEmail, String phone, String city,String street, String zipcode)
+    {
+        this.userName = userName;
+        this.phone = phone;
+        this.userEmail = userEmail;
+        this.age = age;
+        this.address = new Address(city,street,zipcode);
+    }
+
+
     @Id @Generated
     @Column(name = "member_pid")
     private Long pid;
@@ -33,5 +44,6 @@ public class Member extends BaseEntity
     @OneToMany(mappedBy = "member")
     @Builder.Default
     private List<Auth> auths = new ArrayList<>();
+
 
 }
