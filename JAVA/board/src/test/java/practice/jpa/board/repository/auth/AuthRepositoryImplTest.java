@@ -6,9 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-import practice.jpa.board.dto.JoinDto;
+import practice.jpa.board.dto.MemberInfoDto;
 import practice.jpa.board.entity.Role;
-import practice.jpa.board.enumtype.RoleType;
 import practice.jpa.board.service.CreateUpdateMemberService;
 
 import java.util.List;
@@ -31,7 +30,7 @@ class AuthRepositoryImplTest {
     @DisplayName("auth pid 로 role 찾기")
     void findRoleByAuthPid()
     {
-        JoinDto joinDto = JoinDto.builder()
+        MemberInfoDto memberInfoDto = MemberInfoDto.builder()
                 .age(10)
                 .city("경기도 성남시")
                 .phone("010-1234-5678")
@@ -43,7 +42,7 @@ class AuthRepositoryImplTest {
                 .zipcode("12345")
                 .build();
 
-        Long auth_pid     = createUpdateMemberService.createMember(joinDto);
+        Long auth_pid     = createUpdateMemberService.createMember(memberInfoDto);
         List<Role> role = authRepository.findRole(auth_pid);
 
         System.out.println(role.get(0).getType().name());

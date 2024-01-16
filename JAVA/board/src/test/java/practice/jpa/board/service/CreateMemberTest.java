@@ -1,13 +1,13 @@
 package practice.jpa.board.service;
 
 import jakarta.persistence.EntityManager;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import practice.jpa.board.dto.JoinDto;
+import org.springframework.transaction.annotation.Transactional;
+import practice.jpa.board.dto.MemberInfoDto;
 import practice.jpa.board.entity.Auth;
 import practice.jpa.board.entity.Member;
 import practice.jpa.board.entity.RoleAndAuth;
@@ -18,7 +18,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
-//@Transactional
+@Transactional
 class CreateMemberTest
 {
     @Autowired
@@ -38,7 +38,7 @@ class CreateMemberTest
     @BeforeEach
     void createMember()
     {
-        JoinDto joinDto = JoinDto.builder()
+        MemberInfoDto memberInfoDto = MemberInfoDto.builder()
                 .age(10)
                 .city("경기도 성남시")
                 .phone("010-1234-5678")
@@ -50,7 +50,7 @@ class CreateMemberTest
                 .zipcode("12345")
                 .build();
 
-        auth_pid = createUpdateMember.createMember(joinDto);
+        auth_pid = createUpdateMember.createMember(memberInfoDto);
         em.clear();
     }
 

@@ -4,11 +4,9 @@ import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import practice.jpa.board.dto.JoinDto;
-import practice.jpa.board.entity.Auth;
-import practice.jpa.board.entity.Member;
-import practice.jpa.board.entity.Role;
-import practice.jpa.board.entity.RoleAndAuth;
+import practice.jpa.board.config.security.TokenSetting;
+import practice.jpa.board.dto.MemberInfoDto;
+import practice.jpa.board.entity.*;
 import practice.jpa.board.entity.embedded.Address;
 import practice.jpa.board.enumtype.RoleType;
 
@@ -18,29 +16,28 @@ import practice.jpa.board.enumtype.RoleType;
 public class CreateUpdateMemberService {
 
     private final EntityManager em;
+    private final TokenSetting tokenSetting;
 
     @Transactional
-    public long createMember(JoinDto joinDto)
+    public long createMember(MemberInfoDto memberInfoDto)
     {
         Member member = Member.builder()
-                .age(joinDto.getAge())
-                .userName(joinDto.getUserName())
-                .phone(joinDto.getPhone())
-                .userEmail(joinDto.getUserEmail())
-                .userNick(joinDto.getUserNick())
-                .address(new Address(joinDto.getCity(), joinDto.getStreet(), joinDto.getZipcode()))
+                .age(memberInfoDto.getAge())
+                .userName(memberInfoDto.getUserName())
+                .phone(memberInfoDto.getPhone())
+                .userEmail(memberInfoDto.getUserEmail())
+                .userNick(memberInfoDto.getUserNick())
+                .address(new Address(memberInfoDto.getCity(), memberInfoDto.getStreet(), memberInfoDto.getZipcode()))
                 .build();
         em.persist(member);
 
-
         Auth auth = Auth.builder()
-                .loginId(joinDto.getLoginId())
-                .password(joinDto.getPassword())
+                .loginId(memberInfoDto.getLoginId())
+                .password(memberInfoDto.getPassword())
                 .build();
         auth.linkMember(member);
 
         em.persist(auth);
-
 
         Role role = Role.builder()
                 .type(RoleType.USER)

@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class JoinDto
+public class MemberInfoDto
 {
     private String userName;
     private int age;
@@ -19,7 +19,5 @@ public class JoinDto
     private String zipcode;
     private String loginId;
     private String password;
-
-
 
 }
