@@ -1,13 +1,15 @@
 package practice.jpa.board.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
+import org.springframework.data.auditing.AuditingHandler;
 import practice.jpa.board.enumtype.RoleType;
 
 @Entity
 @Getter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RoleAndAuth extends BaseEntity
 {
     @Id
@@ -23,6 +25,10 @@ public class RoleAndAuth extends BaseEntity
     @JoinColumn(name = "role_pid")
     private Role role;
 
-    @Enumerated(EnumType.STRING)
-    private RoleType roleType;
+    public void assignAuthRole(Auth auth)
+    {
+        this.auth = auth;
+        auth.getRoleAndAuths().add(this);
+    }
+
 }

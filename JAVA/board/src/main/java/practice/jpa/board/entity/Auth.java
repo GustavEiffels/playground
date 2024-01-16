@@ -1,8 +1,7 @@
 package practice.jpa.board.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import java.sql.Ref;
 import java.util.ArrayList;
@@ -11,9 +10,12 @@ import java.util.List;
 @Entity
 @Getter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"loginId"}))
 public class Auth extends BaseEntity
 {
+
     @Id @GeneratedValue
     @Column(name = "auth_pid")
     private Long pid;
@@ -21,7 +23,7 @@ public class Auth extends BaseEntity
     private String loginId;
     private String password;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.DETACH)
     @JoinColumn(name = "refresh_token_pid")
     private RefreshToken refreshToken;
 
@@ -38,4 +40,8 @@ public class Auth extends BaseEntity
     @OneToMany(mappedBy = "auth")
     @Builder.Default
     private List<Post> posts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "auth")
+    @Builder.Default
+    private List<RoleAndAuth> roleAndAuths = new ArrayList<>();
 }

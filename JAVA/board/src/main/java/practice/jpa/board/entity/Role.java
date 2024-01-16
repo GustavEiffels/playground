@@ -1,15 +1,14 @@
 package practice.jpa.board.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import lombok.Builder;
-import lombok.Getter;
+import jakarta.persistence.*;
+import lombok.*;
+import practice.jpa.board.enumtype.RoleType;
 
 @Entity
 @Getter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Role extends BaseEntity
 {
     @Id
@@ -17,5 +16,7 @@ public class Role extends BaseEntity
     @Column(name = "role_pid")
     private Long pid;
 
+    @Enumerated(EnumType.STRING)
+    private RoleType type;
 
 }

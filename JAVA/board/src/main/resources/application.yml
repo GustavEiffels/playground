@@ -1,4 +1,7 @@
 spring:
+  http:
+    encoding:
+      charset: utf-8
   profiles:
     active: local
   datasource:
@@ -15,3 +18,19 @@ spring:
         format_sql: true
 logging.level:
   org.hibernate.SQL: debug
+
+  ### JWT
+jwt:
+  secret: a2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbQ==
+  time:
+    access: 600000
+    refresh: 7200000
+
+### SERVER ENCODING
+server:
+  servlet:
+    encoding:
+      charset: utf-8
+      force-response: true
+#  server.servlet.encoding.charset=utf-8
+#  server.servlet.encoding.force-response=true
