@@ -2,8 +2,6 @@ package practice.jpa.board.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.sql.Ref;
 import java.util.ArrayList;
 import java.util.List;
 

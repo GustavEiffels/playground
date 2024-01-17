@@ -25,15 +25,15 @@ public class AuthRepositoryImpl implements AuthRepositoryCustom {
     }
 
     @Override
-    public List<Role> findRole(Long auth_pid) {
+    public Optional<List<Role>> findRole(Long auth_pid) {
 
-        return queryFactory
+        return Optional.ofNullable(queryFactory
                 .select(role)
                 .from(auth)
                 .where(auth.pid.eq(auth_pid))
                 .leftJoin(auth.roleAndAuths, roleAndAuth)
                 .leftJoin(roleAndAuth.role, role)
-                .fetch();
+                .fetch());
     }
 
     @Override

@@ -43,9 +43,7 @@ class AuthRepositoryImplTest {
                 .build();
 
         Long auth_pid     = createUpdateMemberService.createMember(memberInfoDto);
-        List<Role> role = authRepository.findRole(auth_pid);
 
-        System.out.println(role.get(0).getType().name());
 
     }
 }

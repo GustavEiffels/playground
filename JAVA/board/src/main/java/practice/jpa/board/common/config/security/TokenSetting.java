@@ -1,4 +1,4 @@
-package practice.jpa.board.config.security;
+package practice.jpa.board.common.config.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -62,7 +62,6 @@ public class TokenSetting implements InitializingBean
 
         Auth auth = authRepository.findByLoginId(authentication.getName())
                 .orElseThrow(EntityNotFoundException::new);
-
 
         Member member = authRepository.getMemberById(auth.getPid())
                                             .orElseThrow(EntityNotFoundException::new);

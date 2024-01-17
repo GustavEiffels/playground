@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface AuthRepositoryCustom {
 
-    List<Role> findRole(Long auth_pid);
+    Optional<List<Role>> findRole(Long auth_pid);
 
     Optional<Auth> findByLoginId(String loginId);
 

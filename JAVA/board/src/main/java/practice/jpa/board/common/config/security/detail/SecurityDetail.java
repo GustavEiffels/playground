@@ -1,28 +1,30 @@
-package practice.jpa.board.config.security.detail;
+package practice.jpa.board.common.config.security.detail;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import practice.jpa.board.entity.Auth;
+import practice.jpa.board.entity.Role;
 import practice.jpa.board.repository.auth.AuthRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @RequiredArgsConstructor
 public class SecurityDetail implements UserDetails {
 
     private final Auth auth;
-    private final String roleType;
+    private final List<Role> roleList;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(()-> roleType);
-        return authorities;
+        return roleList.stream().map(o -> new SimpleGrantedAuthority(o.getType().name())).collect(Collectors.toList());
     }
 
     @Override
