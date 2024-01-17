@@ -16,9 +16,11 @@ public class Post extends BaseEntity
 
     private String title;
 
+    @Builder.Default
+    private Integer view = 0;
+
     @Column(columnDefinition="TEXT")
     private String contents;
-
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "auth_pid")
