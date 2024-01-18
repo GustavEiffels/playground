@@ -1,7 +1,6 @@
 package practice.jpa.board.enumtype;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import practice.jpa.board.exceptionBundle.dto.ErrorResponse;
