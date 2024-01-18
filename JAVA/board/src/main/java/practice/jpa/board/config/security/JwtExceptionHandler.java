@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import practice.jpa.board.enumtype.ErrorCode;
+import practice.jpa.board.exceptionBundle.enumtype.ErrorCode;
 import practice.jpa.board.exceptionBundle.token.JwtValidCheckException;
 
 import java.io.IOException;

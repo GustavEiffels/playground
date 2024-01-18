@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import practice.jpa.board.entity.Auth;
 import practice.jpa.board.entity.Role;
-import practice.jpa.board.exceptionBundle.NotFoundLoginId;
-import practice.jpa.board.exceptionBundle.NotFoundUserRoleException;
+import practice.jpa.board.exceptionBundle.exceptions.NotFoundLoginId;
+import practice.jpa.board.exceptionBundle.exceptions.NotFoundUserRoleException;
 import practice.jpa.board.repository.auth.AuthRepository;
 
 import java.util.List;

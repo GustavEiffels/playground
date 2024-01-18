@@ -1,4 +1,4 @@
-package practice.jpa.board.enumtype;
+package practice.jpa.board.exceptionBundle.enumtype;
 
 
 import lombok.Getter;

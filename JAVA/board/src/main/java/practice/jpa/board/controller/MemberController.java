@@ -24,5 +24,4 @@ public class MemberController
     {
         return new ResponseEntity<>(loginService.login(request), HttpStatus.OK);
     }
-
 }

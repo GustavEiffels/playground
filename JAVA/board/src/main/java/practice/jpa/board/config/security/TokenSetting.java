@@ -14,12 +14,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
-import practice.jpa.board.controller.dto.TokenDto;
 import practice.jpa.board.entity.Auth;
 import practice.jpa.board.entity.Member;
 import practice.jpa.board.enumtype.JwtState;
-import practice.jpa.board.exceptionBundle.SecurityKeySettingException;
+import practice.jpa.board.exceptionBundle.exceptions.SecurityKeySettingException;
 import practice.jpa.board.exceptionBundle.token.JwtValidCheckException;
 import practice.jpa.board.repository.auth.AuthRepository;
 

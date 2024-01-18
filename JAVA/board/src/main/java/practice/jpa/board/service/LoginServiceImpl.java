@@ -35,7 +35,5 @@ public class LoginServiceImpl implements LoginService {
                     .message(e.getMessage())
                     .build();
         }
-
-
     }
 }

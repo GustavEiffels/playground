@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
-import practice.jpa.board.enumtype.ErrorCode;
+import practice.jpa.board.exceptionBundle.enumtype.ErrorCode;
 
 @Getter
 @AllArgsConstructor
@@ -24,8 +24,6 @@ public class ErrorResponse {
         this.httpStatus = httpStatus;
         this.cause = e.getCause();
     }
-
-
 
 
     public static ErrorResponse of(ErrorCode errorCode, Exception e)
