@@ -1,7 +1,7 @@
 package practice.jpa.board.service;
 
 
-import practice.jpa.board.dto.PostDto;
+import practice.jpa.board.controller.dto.PostDto;
 
 public interface CreateUpdatePostService
 {

@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import practice.jpa.board.enumtype.JwtState;
+import practice.jpa.board.exceptionBundle.token.JwtValidCheckException;
 
 @Controller
 public class TestController {
@@ -22,4 +24,12 @@ public class TestController {
     {
         return "mean";
     }
+
+    @PostMapping("/token-test")
+    @ResponseBody
+    public String tokenTest()
+    {
+        throw new JwtValidCheckException(JwtState.INVALID);
+    }
+
 }

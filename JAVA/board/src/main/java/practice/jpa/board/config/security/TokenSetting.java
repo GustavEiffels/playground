@@ -1,4 +1,4 @@
-package practice.jpa.board.common.config.security;
+package practice.jpa.board.config.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -14,11 +14,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import practice.jpa.board.dto.TokenDto;
+import org.springframework.util.StringUtils;
+import practice.jpa.board.controller.dto.TokenDto;
 import practice.jpa.board.entity.Auth;
 import practice.jpa.board.entity.Member;
 import practice.jpa.board.enumtype.JwtState;
 import practice.jpa.board.exceptionBundle.SecurityKeySettingException;
+import practice.jpa.board.exceptionBundle.token.JwtValidCheckException;
 import practice.jpa.board.repository.auth.AuthRepository;
 
 import java.security.Key;
@@ -28,6 +30,7 @@ import java.util.Date;
 import java.util.stream.Collectors;
 
 import static io.jsonwebtoken.Jwts.*;
+import static org.springframework.util.StringUtils.hasText;
 
 @Component
 public class TokenSetting implements InitializingBean
@@ -36,13 +39,13 @@ public class TokenSetting implements InitializingBean
     public  TokenSetting(
             @Value("${jwt.time.access}")Long accessValidTime,
             @Value("${jwt.time.refresh}")Long refreshValidTime,
-            @Value("${jwt.secret}") String secret,
+            @Value("${jwt.secret}") String secretKey,
             AuthRepository authRepository
     )
     {
         this.accessValidTime = accessValidTime;
         this.refreshValidTime = refreshValidTime;
-        this.secretKey = secret;
+        this.secretKey = secretKey;
         this.authRepository = authRepository;
     }
 
@@ -72,7 +75,7 @@ public class TokenSetting implements InitializingBean
                 .orElseThrow(EntityNotFoundException::new);
 
         Member member = authRepository.getMemberById(auth.getPid())
-                                            .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(EntityNotFoundException::new);
 
         return builder().setSubject(authentication.getName())
                 .claim("ROLE",authorities)
@@ -91,42 +94,40 @@ public class TokenSetting implements InitializingBean
                 .compact();
     }
 
-    public TokenDto.GetAuthenticationResult getAuthentication(String accessToken)
+    public Authentication getAuthentication(String accessToken)
     {
-        TokenDto.ValidCheckResult validResult = isTokenValid(accessToken);
 
-        if(validResult.getIsAvailable())
-        {
-            Claims claims = validResult.getClaims();
+        Claims claims = tokenValidCheck(accessToken);
 
-            Collection<? extends GrantedAuthority> authorities = Arrays.stream(claims.get("ROLE").toString().split(","))
-                    .map(SimpleGrantedAuthority::new).toList();
-
-            UserDetails principal = new User(claims.getSubject(),"",authorities);
-            return  new TokenDto.GetAuthenticationResult().SUCCESS(new UsernamePasswordAuthenticationToken(principal,"",authorities));
+        if(!hasText(claims.get("ROLE").toString())) {
+            throw new JwtValidCheckException(JwtState.EMPTY_AUTH);
         }
-        return new TokenDto.GetAuthenticationResult().FAIL(false,validResult);
+
+        Collection<? extends GrantedAuthority> authorities = Arrays.stream(claims.get("ROLE").toString().split(","))
+                .map(SimpleGrantedAuthority::new).toList();
+
+        UserDetails principal = new User(claims.getSubject(),"",authorities);
+        return  new UsernamePasswordAuthenticationToken(principal,"",authorities);
     }
 
-    public TokenDto.ValidCheckResult isTokenValid(String accessToken)
+
+    public Claims tokenValidCheck(String accessToken)
     {
-        try
-        {
-            return new TokenDto.ValidCheckResult(parserBuilder().setSigningKey(key).build().parseClaimsJws(accessToken).getBody());
+        try {
+            return parserBuilder().setSigningKey(key).build().parseClaimsJws(accessToken).getBody();
         }
         catch (SecurityException | MalformedJwtException e){
-            return  new TokenDto.ValidCheckResult(JwtState.INVALID,e);
+            throw new JwtValidCheckException(JwtState.INVALID);
         }
         catch (ExpiredJwtException e){
-            return  new TokenDto.ValidCheckResult(JwtState.EXPIRE,e);
+            throw new JwtValidCheckException(JwtState.EXPIRE);
         }
         catch (UnsupportedJwtException e){
-            return  new TokenDto.ValidCheckResult(JwtState.UNSUPPORTED,e);
+            throw new JwtValidCheckException(JwtState.UNSUPPORTED);
         }
         catch (IllegalArgumentException e){
-            return  new TokenDto.ValidCheckResult(JwtState.EMPTY,e);
+            throw new JwtValidCheckException(JwtState.EMPTY);
         }
     }
-
 
 }

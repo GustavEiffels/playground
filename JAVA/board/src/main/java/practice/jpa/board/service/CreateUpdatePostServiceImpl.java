@@ -4,7 +4,7 @@ package practice.jpa.board.service;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import practice.jpa.board.dto.PostDto;
+import practice.jpa.board.controller.dto.PostDto;
 import practice.jpa.board.entity.Post;
 import practice.jpa.board.repository.post.PostRepository;
 

@@ -1,4 +1,4 @@
-package practice.jpa.board.common.config.security;
+package practice.jpa.board.config.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -38,12 +40,8 @@ public class JwtFilter extends OncePerRequestFilter {
 
         if(hasText(jwt))
         {
-            System.out.println("토큰 존재");
-        }
-        else
-        {
-            System.out.println("토큰 존재 X");
-
+            Authentication authentication = setting.getAuthentication(jwt);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         }
         filterChain.doFilter(request,response);
     }

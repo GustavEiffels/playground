@@ -1,7 +1,6 @@
 package practice.jpa.board.service;
 
-import org.springframework.http.ResponseEntity;
-import practice.jpa.board.dto.LoginDto;
+import practice.jpa.board.controller.dto.LoginDto;
 
 public interface LoginService
 {

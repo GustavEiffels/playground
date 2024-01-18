@@ -1,4 +1,4 @@
-package practice.jpa.board.dto;
+package practice.jpa.board.controller.dto;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;

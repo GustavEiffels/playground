@@ -1,4 +1,4 @@
-package practice.jpa.board.common.config.security.detail;
+package practice.jpa.board.config.security.detail;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

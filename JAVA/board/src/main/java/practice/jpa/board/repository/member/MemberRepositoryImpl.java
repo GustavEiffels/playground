@@ -7,7 +7,7 @@ import jakarta.persistence.EntityManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import practice.jpa.board.dto.FindMemberDto;
+import practice.jpa.board.controller.dto.FindMemberDto;
 import java.util.List;
 import static org.springframework.util.StringUtils.*;
 import static practice.jpa.board.entity.QMember.member;

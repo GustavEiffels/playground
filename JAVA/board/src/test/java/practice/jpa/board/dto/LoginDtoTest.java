@@ -2,8 +2,7 @@ package practice.jpa.board.dto;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import static org.junit.jupiter.api.Assertions.*;
+import practice.jpa.board.controller.dto.LoginDto;
 
 @SpringBootTest
 class LoginDtoTest

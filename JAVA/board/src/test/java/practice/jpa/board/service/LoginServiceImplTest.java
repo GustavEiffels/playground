@@ -8,12 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.transaction.annotation.Transactional;
-import practice.jpa.board.dto.MemberInfoDto;
+import practice.jpa.board.controller.dto.MemberInfoDto;
 import practice.jpa.board.exceptionBundle.NotFoundLoginId;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 //@Transactional

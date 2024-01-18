@@ -1,13 +1,11 @@
-package practice.jpa.board.dto;
+package practice.jpa.board.controller.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
-@Builder
-public class MemberInfoDto
+
+import lombok.Data;
+
+@Data
+public class FindMemberDto
 {
     private String userName;
     private int age;
@@ -17,7 +15,6 @@ public class MemberInfoDto
     private String city;
     private String street;
     private String zipcode;
-    private String loginId;
-    private String password;
-
+    private int ageGoe;
+    private int ageLoe;
 }

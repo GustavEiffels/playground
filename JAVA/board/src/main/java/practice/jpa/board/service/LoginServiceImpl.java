@@ -1,14 +1,13 @@
 package practice.jpa.board.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
-import practice.jpa.board.common.config.security.TokenSetting;
-import practice.jpa.board.dto.LoginDto;
+import practice.jpa.board.config.security.TokenSetting;
+import practice.jpa.board.controller.dto.LoginDto;
 
 @Service
 @RequiredArgsConstructor
