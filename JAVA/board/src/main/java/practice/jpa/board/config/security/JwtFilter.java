@@ -21,8 +21,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
     private final TokenSetting setting;
 
-    private String resolveToken(HttpServletRequest request)
-    {
+    private String resolveToken(HttpServletRequest request) {
         String bearerTkn = request.getHeader("Authorization");
 
         if(hasText(bearerTkn) && bearerTkn.startsWith("Bearer ")) return bearerTkn.substring(7);
@@ -35,8 +34,6 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String jwt = resolveToken(request);
         String uri = request.getRequestURI();
-
-        log.info("요청 URL : {}",uri);
 
         if(hasText(jwt))
         {

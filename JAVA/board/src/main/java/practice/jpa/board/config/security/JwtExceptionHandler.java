@@ -38,9 +38,9 @@ public class JwtExceptionHandler extends OncePerRequestFilter {
         try{
           String json = new ObjectMapper().writeValueAsString(ErrorCode.of(errorCode,e));
           response.getWriter().write(json);
+        }
+        catch (IOException ioException){
 
-        }catch (IOException ioException)
-        {
             ioException.printStackTrace();
         }
     }
