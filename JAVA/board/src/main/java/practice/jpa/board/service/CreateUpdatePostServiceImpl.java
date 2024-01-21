@@ -19,6 +19,7 @@ public class CreateUpdatePostServiceImpl implements CreateUpdatePostService{
     @Override
     public PostDto.CreatePost.Response createPost(PostDto.CreatePost.Request request)
     {
+
         Post post = Post.builder()
                 .title(request.getTitle())
                 .contents(request.getContent())

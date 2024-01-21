@@ -22,6 +22,7 @@ public class MemberController
     @PostMapping("/login")
     public ResponseEntity<LoginDto.Response> login(@RequestBody LoginDto.Request request)
     {
+
         return new ResponseEntity<>(loginService.login(request), HttpStatus.OK);
     }
 }
