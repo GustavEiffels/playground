@@ -20,6 +20,8 @@ public class CreateUpdateMemberServiceImpl implements CreateUpdateMemberService 
     @Transactional
     public Long createMember(MemberInfoDto memberInfoDto)
     {
+
+
         Member member = Member.builder()
                 .age(memberInfoDto.getAge())
                 .userName(memberInfoDto.getUserName())
