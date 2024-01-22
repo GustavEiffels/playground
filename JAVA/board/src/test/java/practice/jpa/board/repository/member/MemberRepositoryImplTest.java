@@ -60,7 +60,7 @@ class MemberRepositoryImplTest {
     {
         FindMemberDto findMemberDto = new FindMemberDto();
 
-        Page<FindMemberDto> conditionMemberList = memberRepository.getConditionMemberList(findMemberDto, PageRequest.of(2,20));
+        Page<FindMemberDto> conditionMemberList = memberRepository.getConditionMemberList(findMemberDto, PageRequest.of(0,20));
 
         for (FindMemberDto memberDto : conditionMemberList) {
             System.out.println(memberDto.toString());

@@ -9,6 +9,8 @@ import practice.jpa.board.exceptionBundle.enumtype.ErrorCode;
 import practice.jpa.board.exceptionBundle.dto.ErrorResponse;
 import practice.jpa.board.exceptionBundle.token.JwtValidCheckException;
 
+import java.net.SocketTimeoutException;
+
 
 @RestControllerAdvice
 @Slf4j
@@ -21,6 +23,12 @@ public class GlobalExceptionHandler
       ErrorCode errorCode = e.getErrorCode();
       log.error("handleMalformedJwtException",e);
       return new ResponseEntity<>(ErrorCode.of(errorCode,e), errorCode.getStatus());
+    }
+
+    @ExceptionHandler(SocketTimeoutException.class)
+    protected ResponseEntity<ErrorResponse> handleSocketTimeoutException(SocketTimeoutException e)
+    {
+        return new ResponseEntity<>(ErrorCode.of(ErrorCode.SOCKET_TIMEOUT,e), ErrorCode.SOCKET_TIMEOUT.getStatus());
     }
 
 }

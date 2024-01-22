@@ -35,6 +35,8 @@ public class JwtFilter extends OncePerRequestFilter {
         String jwt = resolveToken(request);
         String uri = request.getRequestURI();
 
+        log.info("요청 URL : {}",uri);
+
         if(hasText(jwt))
         {
             Authentication authentication = setting.getAuthentication(jwt);

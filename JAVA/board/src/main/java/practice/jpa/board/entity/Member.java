@@ -37,5 +37,4 @@ public class Member extends BaseEntity
     @Builder.Default
     private List<Auth> auths = new ArrayList<>();
 
-
 }

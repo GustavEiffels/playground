@@ -13,7 +13,10 @@ public enum ErrorCode
     TOKEN_EXPIRE(HttpStatus.UNAUTHORIZED,"만료된 토큰이다","TOKEN_ERROR_02"),
     TOKEN_UNSUPPORTED(HttpStatus.BAD_REQUEST,"지원되지 않는 토큰이다.","TOKEN_ERROR_03"),
     TOKEN_EMPTY(HttpStatus.BAD_REQUEST,"잘못된 토큰","TOKEN_ERROR_04"),
-    TOKEN_EMPTY_AUTH(HttpStatus.UNAUTHORIZED,"권한 정보가 없는 토큰","TOKEN_ERROR_05");
+    TOKEN_EMPTY_AUTH(HttpStatus.UNAUTHORIZED,"권한 정보가 없는 토큰","TOKEN_ERROR_05"),
+
+    // ETC
+    SOCKET_TIMEOUT(HttpStatus.GATEWAY_TIMEOUT,"네트워크 연결에 대한 응답을 받지 못했습니다.","NETWORK_01");
 
 
 
