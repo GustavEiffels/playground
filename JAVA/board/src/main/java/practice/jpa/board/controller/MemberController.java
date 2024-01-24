@@ -1,5 +1,6 @@
 package practice.jpa.board.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +20,11 @@ public class MemberController
 {
     private final LoginService loginService;
 
+
+    @Operation(summary = "회원 로그인 요청",description = "로그인 요청 성공 시 AccessToken, RefreshToken 를 반환 합니다",tags = "MemberController")
     @PostMapping("/login")
     public ResponseEntity<LoginDto.Response> login(@RequestBody LoginDto.Request request)
     {
-
         return new ResponseEntity<>(loginService.login(request), HttpStatus.OK);
     }
 }
