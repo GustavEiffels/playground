@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <button id="button">
+        버튼
+    </button>
+<script>
+    let address = ""; 
+    const button = document.getElementById('button').addEventListener('click',()=>{
+        const result = new daum.Postcode({
+            oncomplete: function(data) {
+                address = data.address;
+                console.log("주소 : "+data.address);
+                alert("address! : "+address);
+            }
+        }).open();
+    })
+</script>
+</body>
+</html>
