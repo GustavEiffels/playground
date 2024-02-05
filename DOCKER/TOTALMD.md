@@ -37,3 +37,7 @@ sftp -P 2222 root@localhost
 
 ## SFTP 접속 에러 - 참고 
 https://kingsong.tistory.com/127
+
+
+## 참고
+https://cubenuri.tistory.com/414 -> JAVA CONTROLLER 
