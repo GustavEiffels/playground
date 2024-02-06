@@ -60,7 +60,7 @@ public class Main {
         ChannelSftp sftp = (ChannelSftp) channel;
         try {
             sftp.cd("/home/test/");
-            sftp.put( "c:\\Users\\SIUK\\GIT_REPO\\PLAYGROUND\\JAVA\\board\\sftpuse\\README.md","black.md");
+            sftp.put( "c:\\Users\\SIUK\\GIT_REPO\\PLAYGROUND\\JAVA\\sftpuse\\README.md","black.md");
                 
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
