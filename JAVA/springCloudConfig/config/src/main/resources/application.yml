@@ -1,0 +1,11 @@
+server:
+  port: 8897
+
+spring:
+  application: 
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: file://c:\Users\SIUK\GIT_REPO\SPRING_CONFIG\
