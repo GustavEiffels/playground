@@ -21,3 +21,4 @@ docker exec rabbitmq rabbitmq-plugins enable rabbitmq_management
 
 ## 5. rabbitmq 관리자 페이지 접속 
 ![alt text](image.png)
+> 초기설정 id, password : guest 
