@@ -1,0 +1,45 @@
+server:
+  port: 0 # 동적으로 어플리케이션을 생성하기 위해서 0 번 포트 사용 
+
+spring:
+  application:
+    name: playground-eureka-client
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    registry-fetch-interval-seconds: 5000
+    disable-delta: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka # Eureka Server URI 정보를 설정 
+  instance:
+    #lease-expiration-duration-in-seconds
+    #lease-renewal-interval-in-seconds
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}} # instance-id 를 설정    
+
+
+
+# register-with-eureka -> Eureka 서버에 자신을 등록할지, 즉 서비스 레지스트리에 등록할 지 정하는 옵션 
+
+
+
+# fetch-registry -> Eureka 서버에 등록 된 서비스 목록을 가져올지에 대한 여부 설정  
+#                         활성화 하면 30 초 마다 Eureka Client 가 Eureka 레지스트리 변경 사항 여부를 재확인한다
+#                         검색할 때마다 Eureka Server 를 호출하는 대신 레지스트리가 로컬로 캐싱됨
+
+
+# registry-fetch-interval-seconds -> 서비스 레지스트리 목록을 캐싱하는 주기를 설정하는 옵션
+
+# disable-delta -> 서비스 레지스트리 목록을 캐싱할 때 변경된 부분만 업데이트 할 것인지 여부 설정 
+#                   default 가 false 임으로 true 로 설정하여 대역폭 낭비를 방지 
+
+
+# lease-renewal-interval-in-seconds -> Eureka 서버로 HeartBeat 보내는 시간 주기 설정  ( 기본 값 30초 )
+#                                     Eureka Server 의  enable-self-preservation 를 비 활성화 상태에서 해서 문제가 있는 서비스들을 서비스 레지스트리 목록에서 제거하는 시간 조절 가능 
+#                                     그러나 내부적 로직에 영향을 미칠 수 있기 때문에 가급적이면 건드리는 것을 권장
+
+# lease-expiration-duration-in-seconds -> 마지막 hearbeat 로 부터 서비스 해제 되기 전까지 걸리는 시간을 설정
+#                                         내부 로직에 영향을 미칠 수 있기 때문에 가급적이면 건드리지 않는 것을 권장 
+#                                         당연한 얘기겠지만 lease-renewal-interval-in-seconds 이거 보다 값이 커야한다.  

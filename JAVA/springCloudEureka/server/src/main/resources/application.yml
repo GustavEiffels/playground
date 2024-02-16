@@ -1,0 +1,43 @@
+# 해당 Application Port 를 8761 로 설정 
+server:
+  port: 8761
+
+# 해당 application 이름을 다음과 같이 변경 
+spring:
+  application:
+    name: playground-eureka-server
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  server:
+    enable-self-preservation: false 
+    response-cache-update-interval-ms: 5000
+    eviction-interval-timer-in-ms: 10000  
+
+    
+# register-with-eureka -> Eureka 서버에 자신을 등록할지, 즉 서비스 레지스트리에 등록할 지 정하는 옵션 
+#                         클라이언트 옵션인데 굳이 Eureka 서버 설정 파일에서 찾아서 조지는 이유는 
+#                         default 값이 True 라서 
+
+
+
+# fetch-registry -> Eureka 서버에 등록 된 서비스 목록을 가져올지에 대한 여부 설정  
+#                         클라이언트 옵션인데 굳이 Eureka 서버 설정 파일에서 찾아서 조지는 이유는 
+#                         default 값이 True 라서 
+#                         활성화 하면 30 초 마다 Eureka Client 가 Eureka 레지스트리 변경 사항 여부를 재확인한다
+
+
+# enable-self-preservation -> 일시적 네트워크 장애로 서비스 해제를 막기 위함 
+#                             활성화 되면 HEART BEAT 가 오지 않는 경우에도 해당 인스턴스를 정상으로 간주하고 유지한다 
+#                             기본적으로 활성화 되어 있어서 , 해당 서비스가 일시적으로 멈췄을 때 인스턴스를 유지하는데 도움이 된다
+#                             그래서 운영환경에서 true 로 설정되어 있는 것을 권장한다 --> 그래서 내가 client 닫으면 계속 남아 있었구나!                        
+#                             그렇다고 얘를 false 로 설정한다고해서 문제가 있는 서비스가 바로 해지되지는 않는다 
+#                             client 의 lease-renewal-interval-in-seconds 값을 기본 속성으로 두었을 때, 30 초 간격으로 client 가 server 로 하트비트를 전송 
+#                             lease-expiration-duration-in-seconds 설정 때문에 하트비트를 받지 못하면 기본 설정 시 90 초 이후에 서비스 등록이 해지되기 때문이다. 
+
+
+# response-cache-update-interval-ms -> Eureka 서버의 캐싱 업데이트 주기를 설정 
+
+# eviction-interval-timer-in-ms -> 클라이언트로 부터 하트비트가 수신 점검 주기를 설정하기 위한 옵션 
