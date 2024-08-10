@@ -1,0 +1,5 @@
+sftp:
+  host: localhost
+  port: 2727
+  user: xingxiuk
+  password: password
