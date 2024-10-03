@@ -1,0 +1,72 @@
+body {
+    max-width: 1280px;
+    margin: 0 auto;
+    background-color:grey;
+    display: flex;
+    flex-direction: column;
+}
+  
+
+.testCmp{
+    margin: 10% auto;
+    max-width: 1200px;
+    max-height: 400px;
+    width: 100%;
+    height: 700px;
+    background-color: white;
+    border-radius: 10px;
+    transition: ease-in-out 0.4s;
+    font-size: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1%;
+    padding: 2%;
+}
+
+.testCmp:hover{
+    box-shadow: 1px 10px 14px rgba(0, 0, 0, 9.7);
+    cursor: default;
+}
+
+
+
+.testCmp input{
+    width: 90%;
+    height: 3rem;
+    font-size: 2rem;
+    border: 1px solid black;
+    padding-inline: 1%;
+    
+}
+
+.testCmp input:focus{
+    border: 1px solid red;
+}
+
+.testCmp .btnLine{
+    height: 20%;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3%;
+}
+
+.testCmp .btnLine button{
+    height: 90%;
+    width: 10%;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    border: 1px solid black;
+    transition: ease-in-out 0.3s;
+}
+
+.testCmp .btnLine button:hover{
+    background-color: grey;
+    cursor: pointer;
+    color: white;
+}
