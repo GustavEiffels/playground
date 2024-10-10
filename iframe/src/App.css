@@ -1,0 +1,54 @@
+body{
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.wrapper{
+    margin: 0;
+    width: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper .navi{
+    width: 50%;
+    height: 4rem;
+    display: flex;
+    flex-direction: row;
+    gap: 3%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1%;
+}
+
+.wrapper h2{
+    font-size: 4rem;
+}
+
+.wrapper .navi input{
+    border-radius: 10px;
+    font-size: 2rem;
+}
+
+.wrapper .navi button{
+    width: 20%;
+    border-radius: 10px;
+    border: 0;
+    font-size: 2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: ease-in-out 0.4s;
+}
+
+.wrapper .navi button:hover{
+    box-shadow: 1px 4px 10px rgba(125, 125, 125,0.8);
+}
+
+.wrapper .navi input:focus{
+    border-inline-color: white;
+    border-color: white;
+}
